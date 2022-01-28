@@ -1,43 +1,40 @@
-import { useRef, useState } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 import './App.css'
-import type { Mesh } from 'three'
-
-type BoxProps = JSX.IntrinsicElements['mesh']
-
-const Box = (props: BoxProps) => {
-  const mesh = useRef<Mesh>(null!)
-
-  const [isHovered, setIsHovered] = useState(false)
-  const [isActive, setIsActive] = useState(false)
-
-  useFrame(() => (mesh.current.rotation.y += 0.01))
-
-  return (
-    <mesh
-      {...props}
-      ref={mesh}
-      scale={isActive ? 1.5 : 1}
-      onClick={() => setIsActive(!isActive)}
-      onPointerOver={() => setIsHovered(true)}
-      onPointerOut={() => setIsHovered(false)}
-    >
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={isHovered ? 'hotpink' : 'orange'} />
-    </mesh>
-  )
-}
+import { FragmentBG } from './components/FragmentBG/FragmentBG'
 
 function App() {
   // const gltf = useLoader(GLTFLoader, '/donut.glb')
   return (
-    <div id='three-wrapper'>
-      <Canvas camera={{ fov: 55 }}>
-        <pointLight position={[10, 10, 10]} intensity={0.5} />
-        <Box position={[-1.2, 0, 0]} />
-        <Box position={[1.2, 0, 0]} />
-      </Canvas>
-    </div>
+    <>
+      <div id='three-wrapper'>
+        <Canvas camera={{ fov: 55 }}>
+          <pointLight position={[10, 10, 10]} intensity={0.5} />
+          <FragmentBG />
+        </Canvas>
+      </div>
+      <div
+        style={{
+          height: '100vh',
+          // width: '100%',
+          margin: '0 auto',
+          maxWidth: '600px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          color: 'white',
+        }}
+      >
+        <h1 style={{ fontSize: '8rem', margin: 0 }}>Hello</h1>
+        <p style={{ fontSize: '1.5rem' }}>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis laborum
+          quia cumque repudiandae. Ad labore atque porro accusamus alias sint
+          culpa reiciendis, illum quae. Perferendis voluptates eaque suscipit
+          repellat sequi.
+        </p>
+      </div>
+      <div style={{ height: '100vh' }}>Page 2</div>
+    </>
   )
 }
 
