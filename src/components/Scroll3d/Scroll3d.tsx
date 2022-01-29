@@ -30,29 +30,24 @@ export const Scroll3d = (props: FragmentBGProps) => {
   useFrame((state) => {
     if (!meshRef.current) return
     const mesh = meshRef.current
-    /**The position of the top of the canvas relative to the top of the page.  */
-    const canvasTopPx = canvas.getBoundingClientRect().top + window.scrollY
 
-    /** Scroll position where the offset should be 0 */
-    const offsetStart = canvasTopPx - window.innerHeight
-
-    const subCamHeightMeters = state.viewport.height / 3
-
-    const scrollMultiplier = (window.scrollY - offsetStart) / window.innerHeight
+    // TODO: The canvas needs to be 100vh for this to work. Make it work with any height.
 
     // Make the mesh move with the page scroll
     mesh.position.y =
-      subCamHeightMeters * scrollMultiplier * 2 - subCamHeightMeters * 2
-    // This seems to be working correctly. The perspective chages the correct amount.
-    // Now, we just need to make the mesh move with the camera offset.
+      (-state.viewport.height * canvas.getBoundingClientRect().top) /
+      (3 * window.innerHeight)
+
     // Make the camera offset match the page scroll
     state.camera.setViewOffset(
       window.innerWidth,
       window.innerHeight * 3,
       0,
-      // The offset should decrease as the scroll increases.
-      // Whatever goes here needs to lock the debug grid to the scrollbar position
-      window.innerHeight - (scrollMultiplier - 1) * window.innerHeight * 2,
+      // The offset is at:
+      // 2 * window.innerHeight when the top of the canvas is just scrolling into view.
+      // window.innerHeight when the canvas is centered on the page.
+      // 0 after just scrolling past the canvas.
+      window.innerHeight + canvas.getBoundingClientRect().top,
       window.innerWidth,
       window.innerHeight
     )

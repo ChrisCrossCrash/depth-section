@@ -25,7 +25,7 @@ function App() {
       <div id='three-wrapper'>
         <Canvas camera={{ fov: 55 }}>
           <pointLight position={[10, 10, 10]} intensity={0.5} />
-          <Scroll3d>
+          <Scroll3d debug>
             <Suspense fallback={null}>
               <FragmentedBGMesh scale={3} position={[0, 0, -3]} />
             </Suspense>
