@@ -5,9 +5,18 @@ import { Scroll3d } from './components/Scroll3d/Scroll3d'
 import FragmentedBGMesh from './components/FragmentedBGMesh/FragmentedBGMesh'
 
 function App() {
-  // const gltf = useLoader(GLTFLoader, '/donut.glb')
   return (
     <>
+      <div
+        style={{
+          height: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <h1 style={{ fontSize: '4rem', margin: 0 }}>Page 1</h1>
+      </div>
       <div id='three-wrapper'>
         <Canvas camera={{ fov: 55 }}>
           <pointLight position={[10, 10, 10]} intensity={0.5} />
@@ -47,7 +56,7 @@ function App() {
           alignItems: 'center',
         }}
       >
-        <h1 style={{ fontSize: '4rem', margin: 0 }}>Page 2</h1>
+        <h1 style={{ fontSize: '4rem', margin: 0 }}>Page 3</h1>
       </div>
     </>
   )
