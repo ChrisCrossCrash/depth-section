@@ -4,19 +4,24 @@ import './App.css'
 import { Scroll3d } from './components/Scroll3d/Scroll3d'
 import FragmentedBGMesh from './components/FragmentedBGMesh/FragmentedBGMesh'
 
+const Page = () => (
+  <div
+    style={{
+      height: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+    <h1 style={{ fontSize: '4rem', margin: 0 }}>Page</h1>
+  </div>
+)
+
 function App() {
   return (
     <>
-      <div
-        style={{
-          height: '100vh',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <h1 style={{ fontSize: '4rem', margin: 0 }}>Page 1</h1>
-      </div>
+      <Page />
+      {/* <div style={{ height: '200px' }} /> */}
       <div id='three-wrapper'>
         <Canvas camera={{ fov: 55 }}>
           <pointLight position={[10, 10, 10]} intensity={0.5} />
@@ -48,16 +53,7 @@ function App() {
           repellat sequi.
         </p>
       </div>
-      <div
-        style={{
-          height: '100vh',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <h1 style={{ fontSize: '4rem', margin: 0 }}>Page 3</h1>
-      </div>
+      <Page />
     </>
   )
 }
