@@ -1,6 +1,8 @@
+import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import './App.css'
-import { FragmentBG } from './components/FragmentBG/FragmentBG'
+import { Scroll3d } from './components/Scroll3d/Scroll3d'
+import FragmentedBGMesh from './components/FragmentedBGMesh/FragmentedBGMesh'
 
 function App() {
   // const gltf = useLoader(GLTFLoader, '/donut.glb')
@@ -9,7 +11,11 @@ function App() {
       <div id='three-wrapper'>
         <Canvas camera={{ fov: 55 }}>
           <pointLight position={[10, 10, 10]} intensity={0.5} />
-          <FragmentBG />
+          <Scroll3d>
+            <Suspense fallback={null}>
+              <FragmentedBGMesh scale={3} position={[0, 0, -3]} />
+            </Suspense>
+          </Scroll3d>
         </Canvas>
       </div>
       <div
@@ -33,7 +39,16 @@ function App() {
           repellat sequi.
         </p>
       </div>
-      <div style={{ height: '100vh' }}>Page 2</div>
+      <div
+        style={{
+          height: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <h1 style={{ fontSize: '4rem', margin: 0 }}>Page 2</h1>
+      </div>
     </>
   )
 }

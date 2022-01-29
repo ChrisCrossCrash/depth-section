@@ -1,11 +1,15 @@
-import { Suspense, useRef } from 'react'
+import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
-import FragmentedBGMesh from '../FragmentedBGMesh/FragmentedBGMesh'
 
-export const FragmentBG = () => {
+type FragmentBGProps = {
+  // children?: JSX.IntrinsicElements['group'] | JSX.IntrinsicElements['mesh']
+  children: React.ReactNode | null
+}
+
+export const Scroll3d = (props: FragmentBGProps) => {
   const meshRef = useRef<any>(null!)
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
     if (!meshRef.current) return
     const scrollPx = document.documentElement.scrollTop
     const canvasHeightPx = state.size.height
@@ -29,13 +33,5 @@ export const FragmentBG = () => {
     )
   })
 
-  return (
-    <>
-      <Suspense fallback={null}>
-        <group ref={meshRef}>
-          <FragmentedBGMesh position={[0, 0, -3]} scale={3} />
-        </group>
-      </Suspense>
-    </>
-  )
+  return <group ref={meshRef}>{props.children}</group>
 }
