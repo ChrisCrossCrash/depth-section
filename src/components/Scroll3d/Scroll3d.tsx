@@ -4,13 +4,27 @@ import { useFrame, useThree } from '@react-three/fiber'
 const Debugger = () => {
   const { viewport } = useThree()
   return (
-    <mesh>
-      <planeBufferGeometry
-        attach='geometry'
-        args={[viewport.width * 0.333, viewport.height * 0.333, 8, 8]}
-      />
-      <meshBasicMaterial attach='material' color='red' wireframe />
-    </mesh>
+    <>
+      <mesh>
+        <planeBufferGeometry
+          attach='geometry'
+          args={[viewport.width * 0.333, viewport.height * 0.333, 4, 4]}
+        />
+        <meshBasicMaterial attach='material' color='red' wireframe />
+      </mesh>
+      <mesh position={[0, 0, -1]}>
+        <planeBufferGeometry
+          attach='geometry'
+          args={[viewport.width * 0.333, viewport.height * 0.333, 4, 4]}
+        />
+        <meshBasicMaterial
+          attach='material'
+          color='blue'
+          opacity={0.2}
+          wireframe
+        />
+      </mesh>
+    </>
   )
 }
 
@@ -55,7 +69,7 @@ export const Scroll3d = (props: FragmentBGProps) => {
 
   return (
     <group ref={meshRef} position={[0, 0, 0]}>
-      {props.children}
+      {/* {props.children} */}
       {props.debug && <Debugger />}
     </group>
   )
