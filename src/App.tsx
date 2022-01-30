@@ -27,7 +27,7 @@ function App() {
           <pointLight position={[10, 10, 10]} intensity={0.5} />
           <Scroll3d debug>
             <Suspense fallback={null}>
-              <FragmentedBGMesh scale={3} position={[0, 0, -3]} />
+              <FragmentedBGMesh scale={3} position={[0, 0, -3]} opacity={0.2} />
             </Suspense>
           </Scroll3d>
         </Canvas>

@@ -2,27 +2,35 @@ import { useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 
 const Debugger = () => {
-  const { viewport } = useThree()
+  const { viewport, size } = useThree()
+
+  const heightFraction = size.height / window.innerHeight / 3
+
   return (
     <>
       <mesh>
         <planeBufferGeometry
           attach='geometry'
-          args={[viewport.width * 0.333, viewport.height * 0.333, 4, 4]}
+          args={[
+            viewport.width * 0.333,
+            viewport.height * heightFraction,
+            4,
+            4,
+          ]}
         />
         <meshBasicMaterial attach='material' color='red' wireframe />
       </mesh>
       <mesh position={[0, 0, -1]}>
         <planeBufferGeometry
           attach='geometry'
-          args={[viewport.width * 0.333, viewport.height * 0.333, 4, 4]}
+          args={[
+            viewport.width * 0.333,
+            viewport.height * heightFraction,
+            4,
+            4,
+          ]}
         />
-        <meshBasicMaterial
-          attach='material'
-          color='blue'
-          opacity={0.2}
-          wireframe
-        />
+        <meshBasicMaterial attach='material' color='blue' wireframe />
       </mesh>
     </>
   )
@@ -47,10 +55,14 @@ export const Scroll3d = (props: FragmentBGProps) => {
 
     // TODO: The canvas needs to be 100vh for this to work. Make it work with any height.
 
+    const hv = state.viewport.height
+    const t = canvas.getBoundingClientRect().top
+    const hc = state.size.height
+    const hw = window.innerHeight
+
     // Make the mesh move with the page scroll
-    mesh.position.y =
-      (-state.viewport.height * canvas.getBoundingClientRect().top) /
-      (3 * window.innerHeight)
+    // (I'm not really sure how this works, but it does)
+    mesh.position.y = (-hv * (2 * t + hc - hw)) / (6 * hw)
 
     // Make the camera offset match the page scroll
     state.camera.setViewOffset(
@@ -62,15 +74,15 @@ export const Scroll3d = (props: FragmentBGProps) => {
       // window.innerHeight when the canvas is centered on the page.
       // 0 after just scrolling past the canvas.
       window.innerHeight + canvas.getBoundingClientRect().top,
-      window.innerWidth,
-      window.innerHeight
+      state.size.width,
+      state.size.height
     )
   })
 
   return (
     <group ref={meshRef} position={[0, 0, 0]}>
-      {/* {props.children} */}
-      {props.debug && <Debugger />}
+      {props.children}
+      {/* {props.debug && <Debugger />} */}
     </group>
   )
 }
