@@ -2,6 +2,7 @@
   "name": "r3f-starter",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "dependencies": {
     "@react-three/drei": "^8.6.3",
     "@react-three/fiber": "^7.0.24",
