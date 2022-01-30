@@ -68,7 +68,7 @@ export const Scroll3d = (props: FragmentBGProps) => {
     state.camera.setViewOffset(
       window.innerWidth,
       window.innerHeight * 3,
-      0,
+      canvas.getBoundingClientRect().left,
       // The offset is at:
       // 2 * window.innerHeight when the top of the canvas is just scrolling into view.
       // window.innerHeight when the canvas is centered on the page.
