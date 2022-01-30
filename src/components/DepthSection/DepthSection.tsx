@@ -36,13 +36,13 @@ const Debugger = () => {
   )
 }
 
-type FragmentBGProps = {
+type DepthSectionProps = {
   // children?: JSX.IntrinsicElements['group'] | JSX.IntrinsicElements['mesh']
   children: React.ReactNode | null
   debug?: boolean
 }
 
-export const Scroll3d = (props: FragmentBGProps) => {
+const DepthSection = (props: DepthSectionProps) => {
   const meshRef = useRef<any>(null!)
 
   const state = useThree()
@@ -82,7 +82,9 @@ export const Scroll3d = (props: FragmentBGProps) => {
   return (
     <group ref={meshRef} position={[0, 0, 0]}>
       {props.children}
-      {/* {props.debug && <Debugger />} */}
+      {props.debug && <Debugger />}
     </group>
   )
 }
+
+export default DepthSection

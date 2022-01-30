@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import './App.css'
-import { Scroll3d } from './components/Scroll3d/Scroll3d'
+import DepthSection from './components/DepthSection/DepthSection'
 import FragmentedBGMesh from './components/FragmentedBGMesh/FragmentedBGMesh'
 
 const Page = () => (
@@ -25,11 +25,11 @@ function App() {
       <div id='three-wrapper'>
         <Canvas camera={{ fov: 55 }}>
           <pointLight position={[10, 10, 10]} intensity={0.5} />
-          <Scroll3d debug>
+          <DepthSection debug>
             <Suspense fallback={null}>
               <FragmentedBGMesh scale={3} position={[0, 0, -3]} opacity={0.2} />
             </Suspense>
-          </Scroll3d>
+          </DepthSection>
         </Canvas>
       </div>
       <div
