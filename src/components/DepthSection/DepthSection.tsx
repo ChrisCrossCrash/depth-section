@@ -36,9 +36,10 @@ const Debugger = () => {
   )
 }
 
-type DepthSectionProps = {
+export type DepthSectionProps = {
   // children?: JSX.IntrinsicElements['group'] | JSX.IntrinsicElements['mesh']
-  children: React.ReactNode | null
+  // TODO: Render children
+  // children: React.ReactNode | null
   debug?: boolean
 }
 
@@ -52,8 +53,6 @@ export const DepthSection = (props: DepthSectionProps) => {
   useFrame((state) => {
     if (!meshRef.current) return
     const mesh = meshRef.current
-
-    // TODO: The canvas needs to be 100vh for this to work. Make it work with any height.
 
     const hv = state.viewport.height
     const t = canvas.getBoundingClientRect().top
@@ -81,7 +80,8 @@ export const DepthSection = (props: DepthSectionProps) => {
 
   return (
     <group ref={meshRef} position={[0, 0, 0]}>
-      {props.children}
+      {/* TODO: Render children */}
+      {/* {props.children} */}
       {props.debug && <Debugger />}
     </group>
   )
