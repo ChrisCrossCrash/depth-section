@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import React, { useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 
 const Debugger = () => {
@@ -42,7 +42,7 @@ type DepthSectionProps = {
   debug?: boolean
 }
 
-const DepthSection = (props: DepthSectionProps) => {
+export const DepthSection = (props: DepthSectionProps) => {
   const meshRef = useRef<any>(null!)
 
   const state = useThree()
@@ -86,5 +86,3 @@ const DepthSection = (props: DepthSectionProps) => {
     </group>
   )
 }
-
-export default DepthSection

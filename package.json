@@ -5,6 +5,7 @@
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
   "scripts": {
     "format": "prettier --write .",
     "build": "rollup -c",
@@ -32,7 +33,6 @@
     "eslint-plugin-react": "^7.28.0",
     "prettier": "^2.5.1",
     "rollup": "^2.67.0",
-    "rollup-plugin-dts": "^4.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-terser": "^7.0.2",
     "typescript": "^4.5.5"

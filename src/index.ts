@@ -1,3 +1,4 @@
-import { Example } from './Example'
+// import { Example } from './Example'
+import { DepthSection } from './components/DepthSection/DepthSection'
 
-export { Example }
+export { DepthSection }
