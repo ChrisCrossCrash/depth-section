@@ -11,11 +11,11 @@ type GLTFResult = GLTF & {
   nodes: {
     Grid: THREE.Mesh
   }
-  materials: {}
+  materials: Record<string, unknown>
 }
 
 const Model = React.forwardRef<JSX.IntrinsicElements['group'], any>(
-  ({ ...props }, ref) => {
+  function Model({ ...props }, ref) {
     const { nodes } = useGLTF('/fragmented-bg-transformed.glb') as GLTFResult
     return (
       <group ref={ref} {...props} dispose={null}>
