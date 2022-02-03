@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { useFrame, useThree } from '@react-three/fiber'
+import { useFrame, useThree, Canvas } from '@react-three/fiber'
 
 const Debugger = () => {
   const { viewport, size } = useThree()
@@ -42,7 +42,7 @@ export type DepthSectionProps = {
   debug?: boolean
 }
 
-export const DepthSection = (props: DepthSectionProps) => {
+const DepthSectionInner = (props: DepthSectionProps) => {
   const meshRef = useRef<any>(null!)
 
   const state = useThree()
@@ -84,3 +84,12 @@ export const DepthSection = (props: DepthSectionProps) => {
     </group>
   )
 }
+
+// We need to wrap the DepthSectionInner compponent with a `Canvas` so we can use
+// R3F hooks in it.
+/** A Three JS canvas with a custom GLTF background. */
+export const DepthSection = (props: DepthSectionProps) => (
+  <Canvas>
+    <DepthSectionInner {...props} />
+  </Canvas>
+)
