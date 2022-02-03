@@ -1,8 +1,38 @@
 # Depth Section (working title)
 
-TODO
+Easy to use 3D models for your page with a parallax scrolling effect.
 
-## Potential Names
+Stay tuned! New background models and features are on the way!
 
-- `depth-section`
-- `3dbg`
+## Install
+
+In your React project, run:
+
+```
+npm install depth-section three
+```
+
+Or
+
+```
+yarn add depth-section three
+```
+
+## Usage
+
+```jsx
+import { Fragmented } from 'depth-section'
+
+const App = () => (
+    <div>
+      <div style={{height: '100vh'}} />
+      <div style={{height: '100vh'}}>
+        <Fragmented />
+      </div>
+      <div style={{height: '100vh'}} />
+    </div>
+  )
+}
+
+export default App
+```
