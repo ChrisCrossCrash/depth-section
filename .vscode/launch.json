@@ -2,9 +2,9 @@
   "configurations": [
     {
       "type": "node-terminal",
-      "name": "Run Script: start",
+      "name": "Run Script: storybook",
       "request": "launch",
-      "command": "yarn run start",
+      "command": "yarn run storybook",
       "cwd": "${workspaceFolder}"
     }
   ]

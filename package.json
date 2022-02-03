@@ -48,6 +48,5 @@
     "rollup-plugin-terser": "^7.0.2",
     "three": "^0.137.5",
     "typescript": "^4.5.5"
-  },
-  "dependencies": {}
+  }
 }
