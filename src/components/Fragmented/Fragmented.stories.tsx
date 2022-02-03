@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { DepthSection } from './DepthSection'
-import FragmentedBGMesh from '../FragmentedBGMesh/FragmentedBGMesh'
+import { Fragmented } from './Fragmented'
 
 type SetupProps = { children: React.ReactNode }
 
@@ -14,19 +13,13 @@ const Setup = (props: SetupProps) => (
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'DepthSection',
-  component: DepthSection,
+  title: 'Fragmented',
+  component: Fragmented,
   decorators: [(storyFn) => <Setup>{storyFn()}</Setup>],
-} as ComponentMeta<typeof DepthSection>
+} as ComponentMeta<typeof Fragmented>
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof DepthSection> = (args) => (
-  <DepthSection>
-    <Suspense fallback={null}>
-      <FragmentedBGMesh scale={5} position={[0, 0, -5]} />
-    </Suspense>
-  </DepthSection>
-)
+const Template: ComponentStory<typeof Fragmented> = (args) => <Fragmented />
 
 export const Default = Template.bind({})
 // More on args: https://storybook.js.org/docs/react/writing-stories/args

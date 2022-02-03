@@ -1,4 +1,4 @@
 // import { Example } from './Example'
-import { DepthSection } from './components/DepthSection/DepthSection'
+import { Fragmented } from './components/Fragmented/Fragmented'
 
-export { DepthSection }
+export { Fragmented }
