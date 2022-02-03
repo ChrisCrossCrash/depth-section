@@ -38,8 +38,7 @@ const Debugger = () => {
 
 export type DepthSectionProps = {
   // children?: JSX.IntrinsicElements['group'] | JSX.IntrinsicElements['mesh']
-  // TODO: Render children
-  // children: React.ReactNode | null
+  children: React.ReactNode | null
   debug?: boolean
 }
 
@@ -80,8 +79,7 @@ export const DepthSection = (props: DepthSectionProps) => {
 
   return (
     <group ref={meshRef} position={[0, 0, 0]}>
-      {/* TODO: Render children */}
-      {/* {props.children} */}
+      {props.children}
       {props.debug && <Debugger />}
     </group>
   )

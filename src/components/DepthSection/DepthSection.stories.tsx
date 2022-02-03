@@ -24,9 +24,20 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof DepthSection> = (args) => (
-  <DepthSection debug />
+  <DepthSection>
+    <Suspense fallback={null}>
+      <FragmentedBGMesh scale={5} position={[0, 0, -5]} />
+    </Suspense>
+  </DepthSection>
 )
 
 export const Default = Template.bind({})
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {}
+Default.parameters = {
+  docs: {
+    source: {
+      code: 'Disabled for this story, see https://github.com/storybookjs/storybook/issues/11554',
+    },
+  },
+}
