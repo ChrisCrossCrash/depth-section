@@ -1,4 +1,3 @@
-import React, { Suspense } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { Fragmented } from './Fragmented'
 
