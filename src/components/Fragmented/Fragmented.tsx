@@ -8,19 +8,14 @@ import { GLTF } from 'three-stdlib'
 const fragmentedModelUrl =
   'https://chriscrosscrash.github.io/depth-section/fragmented.glb'
 
-type GLTFResult = GLTF & {
-  nodes: {
-    Grid: THREE.Mesh
-  }
-  materials: Record<string, unknown>
-}
+type GtlfWithNodes = GLTF & { nodes: { Grid: THREE.Mesh } }
 
 useGLTF.preload(fragmentedModelUrl)
 
 type FragmentedBGMeshProps = GroupProps
 
 const FragmentedBGMesh = (props: FragmentedBGMeshProps) => {
-  const { nodes } = useGLTF(fragmentedModelUrl) as GLTFResult
+  const { nodes } = useGLTF(fragmentedModelUrl) as GtlfWithNodes
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Grid.geometry} rotation={[Math.PI / 2, 0, 0]}>
