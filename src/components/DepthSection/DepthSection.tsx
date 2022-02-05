@@ -18,7 +18,6 @@ const DepthSectionInner = (props: DepthSectionProps) => {
   useEffect(invalidate, [props.inView])
 
   useFrame((threeState) => {
-    console.log('rendering...')
     const mesh = meshRef.current
     const canvas = threeState.gl.domElement
 
