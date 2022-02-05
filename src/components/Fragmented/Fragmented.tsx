@@ -1,8 +1,12 @@
-import React, { Suspense } from 'react'
+import { Suspense } from 'react'
 import { DepthSection } from '../DepthSection/DepthSection'
 import * as THREE from 'three'
 import { useGLTF, Environment } from '@react-three/drei'
+import type { GroupProps } from '@react-three/fiber'
 import { GLTF } from 'three-stdlib'
+
+const fragmentedModelUrl =
+  'https://chriscrosscrash.github.io/depth-section/fragmented.glb'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -11,31 +15,21 @@ type GLTFResult = GLTF & {
   materials: Record<string, unknown>
 }
 
-useGLTF.preload('/fragmented-bg-transformed.glb')
+useGLTF.preload(fragmentedModelUrl)
 
-const FragmentedBGMesh = React.forwardRef<JSX.IntrinsicElements['group'], any>(
-  function Model({ ...props }, ref) {
-    const { nodes } = useGLTF(
-      'https://chriscrosscrash.github.io/depth-section/fragmented.glb'
-    ) as GLTFResult
-    return (
-      <group ref={ref} {...props} dispose={null}>
-        <mesh
-          geometry={nodes.Grid.geometry}
-          // material={nodes.Grid.material}
-          rotation={[Math.PI / 2, 0, 0]}
-        >
-          <meshStandardMaterial
-            color='#270082'
-            roughness={0.3}
-            metalness={0.5}
-          />
-        </mesh>
-        <Environment preset='city' />
-      </group>
-    )
-  }
-)
+type FragmentedBGMeshProps = GroupProps
+
+const FragmentedBGMesh = (props: FragmentedBGMeshProps) => {
+  const { nodes } = useGLTF(fragmentedModelUrl) as GLTFResult
+  return (
+    <group {...props} dispose={null}>
+      <mesh geometry={nodes.Grid.geometry} rotation={[Math.PI / 2, 0, 0]}>
+        <meshStandardMaterial color='#270082' roughness={0.3} metalness={0.5} />
+      </mesh>
+      <Environment preset='city' />
+    </group>
+  )
+}
 
 export const Fragmented = () => (
   <DepthSection>
