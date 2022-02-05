@@ -1,87 +1,37 @@
 import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
-import { useThree, Canvas } from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { useInView } from 'react-intersection-observer'
 import { Debugger } from '../Debugger/Debugger'
 
 export type DepthSectionProps = {
   // children?: JSX.IntrinsicElements['group'] | JSX.IntrinsicElements['mesh']
   children: React.ReactNode | null
+  inView?: boolean
   debug?: boolean
-}
-
-type RenderVars = {
-  /** Height of the viewport in meters */
-  hv: number
-  /** How far the top fo the canvas is from the top of the viewport in pixels */
-  t: number
-  /** Height of the canvas in pixels */
-  hc: number
-  /** Height of the window (viewport) in pixels */
-  hw: number
-  /** How many children the mesh has. This is used to determine if the GLTF model has been loaded. */
-  meshChildCount: number
 }
 
 const DepthSectionInner = (props: DepthSectionProps) => {
   const meshRef = useRef<THREE.Group>(null)
 
-  const threeState = useThree()
+  const { invalidate } = useThree()
+  useEffect(invalidate, [props.inView])
 
-  const canvas = threeState.gl.domElement
-
-  const renderVarsRef = useRef<RenderVars>({
-    hv: 1,
-    t: 1,
-    hc: 1,
-    hw: 1,
-    meshChildCount: 0,
-  })
-  const isVisible = useRef<boolean>(false)
-
-  const renderFrame = () =>
-    threeState.gl.render(threeState.scene, threeState.camera)
-
-  const animate = (observer: IntersectionObserver) => {
-    // We need to queue up a call to animate() on the next frame,
-    // regardless of whether or not this frame gets rendered.
-    requestAnimationFrame(() => animate(observer))
-
-    // Skip re-rendering if:
-    // 1. No mesh is provided
-    // 2. The canvas is not visible on the page
-    // 3. None of the variables used to render have changed and the mesh hasn't changed
-
-    // 1. No mesh is provided
+  useFrame((threeState) => {
+    console.log('rendering...')
     const mesh = meshRef.current
-    if (!mesh) return
+    const canvas = threeState.gl.domElement
 
-    // 2. The canvas is not visible on the page.
-    if (!isVisible.current) return
+    if (!mesh || !props.inView) return
 
-    // 3. None of the variables used to render have changed and the mesh hasn't changed
-
+    /** Height of the viewport in meters */
     const hv = threeState.viewport.height
+    /** How far the top fo the canvas is from the top of the viewport in pixels */
     const t = canvas.getBoundingClientRect().top
+    /** Height of the canvas in pixels */
     const hc = threeState.size.height
+    /** Height of the window (viewport) in pixels */
     const hw = window.innerHeight
-    const meshChildCount = mesh.children.length
-
-    if (
-      hv === renderVarsRef.current.hv &&
-      t === renderVarsRef.current.t &&
-      hc === renderVarsRef.current.hc &&
-      hw === renderVarsRef.current.hw &&
-      // TODO: If possible, find a better way of checking if the mesh has changed
-      meshChildCount === renderVarsRef.current.meshChildCount
-    ) {
-      // There's no need to render because nothing has changed.
-      return
-    }
-
-    // At this point, we know we need to re-render.
-
-    // Update the renderVarsRef
-    renderVarsRef.current = { hv, t, hc, hw, meshChildCount }
 
     // Make the mesh move with the page scroll
     // (I'm not really sure how this works, but it does)
@@ -101,19 +51,8 @@ const DepthSectionInner = (props: DepthSectionProps) => {
       threeState.size.height
     )
 
-    renderFrame()
-  }
-
-  useEffect(() => {
-    // Set up an intersection observer to detect if the canvas is visible
-    // on the page and change the `isVisible` ref accordingly.
-    const observerCB: IntersectionObserverCallback = (entries) => {
-      entries.forEach((entry) => (isVisible.current = entry.isIntersecting))
-    }
-    const observer = new IntersectionObserver(observerCB)
-    observer.observe(canvas)
-    animate(observer)
-  }, [])
+    threeState.invalidate()
+  })
 
   return (
     <group ref={meshRef} position={[0, 0, 0]}>
@@ -126,11 +65,11 @@ const DepthSectionInner = (props: DepthSectionProps) => {
 // We need to wrap the DepthSectionInner compponent with a `Canvas` so we can use
 // R3F hooks in it.
 /** A Three JS canvas with a custom GLTF background. */
-export const DepthSection = (props: DepthSectionProps) => (
-  <Canvas
-    // `frameloop` gets set to `never` because we will control it manually with `animate()`.
-    frameloop='never'
-  >
-    <DepthSectionInner {...props} />
-  </Canvas>
-)
+export const DepthSection = (props: DepthSectionProps) => {
+  const { ref, inView } = useInView()
+  return (
+    <Canvas frameloop='demand' ref={ref}>
+      <DepthSectionInner inView={inView} {...props} />
+    </Canvas>
+  )
+}
