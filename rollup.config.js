@@ -5,28 +5,34 @@ import { terser } from 'rollup-plugin-terser'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import packageJson from './package.json'
 
-export default [
-  {
-    input: 'src/index.ts',
-    output: [
-      {
-        file: packageJson.main,
-        format: 'cjs',
-        sourcemap: true,
-      },
-      {
-        file: packageJson.module,
-        format: 'esm',
-        sourcemap: true,
-      },
-    ],
-    plugins: [
-      peerDepsExternal(),
-      resolve(),
-      commonjs(),
-      typescript({ tsconfig: './tsconfig.json' }),
-      terser(),
-    ],
-    external: ['react', 'react-dom', 'three'],
+export default {
+  input: 'src/index.ts',
+  output: [
+    {
+      file: packageJson.main,
+      format: 'cjs',
+      sourcemap: true,
+    },
+    {
+      file: packageJson.module,
+      format: 'esm',
+      sourcemap: true,
+    },
+  ],
+  plugins: [
+    peerDepsExternal(),
+    resolve(),
+    commonjs(),
+    typescript({ tsconfig: './tsconfig.json' }),
+    terser(),
+  ],
+  external: ['react', 'react-dom', 'three'],
+  onwarn(warning, warn) {
+    // skip `EVAL``warnings related to Chevrotain
+    // https://github.com/Chevrotain/chevrotain/issues/1760
+    if (warning.code === 'EVAL' && warning.id?.includes('chevrotain')) return
+
+    // Use default behavior for everything else
+    warn(warning)
   },
-]
+}
