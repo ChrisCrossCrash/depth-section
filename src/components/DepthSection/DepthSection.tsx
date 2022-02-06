@@ -9,6 +9,7 @@ export type DepthSectionProps = {
   children: React.ReactNode | null
   inView?: boolean
   debug?: boolean
+  htmlOverlay?: React.ReactNode
 }
 
 const DepthSectionInner = (props: DepthSectionProps) => {
@@ -67,8 +68,21 @@ const DepthSectionInner = (props: DepthSectionProps) => {
 export const DepthSection = (props: DepthSectionProps) => {
   const { ref, inView } = useInView()
   return (
-    <Canvas frameloop='demand' ref={ref}>
-      <DepthSectionInner inView={inView} {...props} />
-    </Canvas>
+    <div style={{ position: 'relative', height: '100%', width: '100%' }}>
+      <Canvas frameloop='demand' ref={ref}>
+        <DepthSectionInner inView={inView} {...props} />
+      </Canvas>
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          height: '100%',
+          width: '100%',
+        }}
+      >
+        {props.htmlOverlay}
+      </div>
+    </div>
   )
 }

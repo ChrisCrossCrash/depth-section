@@ -26,8 +26,12 @@ const FragmentedBGMesh = (props: FragmentedBGMeshProps) => {
   )
 }
 
-export const Fragmented = () => (
-  <DepthSection>
+type FragmentedProps = {
+  children?: React.ReactNode
+}
+
+export const Fragmented = (props: FragmentedProps) => (
+  <DepthSection htmlOverlay={props.children}>
     <Suspense fallback={null}>
       <FragmentedBGMesh scale={5} position={[0, 0, -5]} />
     </Suspense>
