@@ -47,6 +47,7 @@ Do not update when the background isn't moving.
 
 Changes in the vertical height on mobile devices causes the canvas to be resized, resulting in the mesh jumping around. Resources:
 
+- [Google Developers: URL Bar Resizing](https://developers.google.com/web/updates/2016/12/url-bar-resizing)
 - [CSS Tricks: CSS fix for 100vh in mobile WebKit](https://css-tricks.com/css-fix-for-100vh-in-mobile-webkit/)
 - [CSS Tricks: The trick to viewport units on mobile](https://css-tricks.com/the-trick-to-viewport-units-on-mobile/)
 - [Stack Overflow: CSS3 100vh not constant in mobile browser](https://stackoverflow.com/questions/37112218/css3-100vh-not-constant-in-mobile-browser)
