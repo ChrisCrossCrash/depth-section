@@ -51,6 +51,13 @@ Changes in the vertical height on mobile devices causes the canvas to be resized
 - [CSS Tricks: The trick to viewport units on mobile](https://css-tricks.com/the-trick-to-viewport-units-on-mobile/)
 - [Stack Overflow: CSS3 100vh not constant in mobile browser](https://stackoverflow.com/questions/37112218/css3-100vh-not-constant-in-mobile-browser)
 
+### Self-Hosting GLTF Files
+
+Right now, the GLTF files used in the backgrounds can only be served from the [ChrisCrossCrash.GitHub.io](https://github.com/ChrisCrossCrash/ChrisCrossCrash.github.io) GitHub pages repository. Users should be given the option to download the files and self-host them. Here are some options:
+
+1. Simply pass a URL to the component. For example: `<Fragmented url='/fragmented.glb'>`. The user would have to manually download the file and put it in their `public` directory.
+2. Provide a cli command which will download the files to a directory specified by the user. For example: `npm run depth-section --download public`. The user would then have to specify the directory where the files are located with an environment variable.
+
 ## Design Principles
 
 `DepthSection` is the core component of the the library on which all other components are built. It has two main responsibilities:
