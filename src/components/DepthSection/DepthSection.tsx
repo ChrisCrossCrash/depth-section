@@ -1,20 +1,32 @@
 import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { Canvas, Object3DNode, useFrame, useThree } from '@react-three/fiber'
 import { useInView } from 'react-intersection-observer'
 import { Debugger } from '../Debugger/Debugger'
 
 export type DepthSectionProps = {
-  // children?: JSX.IntrinsicElements['group'] | JSX.IntrinsicElements['mesh']
-  children: React.ReactNode | null
-  inView?: boolean
+  /**
+   * The 3D scene to render in the Depth Section
+   *
+   * For best results with the default camera settings, the scene should be centered on
+   * the world origin with a height of 2.56 meters on the xy plane.
+   */
+  children: Object3DNode<any, any> | null
+  /** Render a debug mesh into the scene and log some extra information into the console */
   debug?: boolean
+  /** The HTML content to be displayed in the DepthSection */
   htmlOverlay?: React.ReactNode
 }
 
-const DepthSectionInner = (props: DepthSectionProps) => {
-  const meshRef = useRef<THREE.Group>(null)
+type DepthSectionInnerProps = Omit<DepthSectionProps, 'htmlOverlay'> & {
+  inView: boolean
+}
 
+const DepthSectionInner = (props: DepthSectionInnerProps) => {
+  const meshRef = useRef<THREE.Group>(null!)
+
+  // Trigger `invalidate()` when `inView` changes.
+  // This restarts the render loop when the DepthSection comes back into view.
   const { invalidate } = useThree()
   useEffect(invalidate, [props.inView])
 
@@ -22,7 +34,8 @@ const DepthSectionInner = (props: DepthSectionProps) => {
     const mesh = meshRef.current
     const canvas = threeState.gl.domElement
 
-    if (!mesh || !props.inView) return
+    // Stop the render loop when the DepthSection is not in view.
+    if (!props.inView) return
 
     /** Height of the viewport in meters */
     const hv = threeState.viewport.height
@@ -55,7 +68,7 @@ const DepthSectionInner = (props: DepthSectionProps) => {
   })
 
   return (
-    <group ref={meshRef} position={[0, 0, 0]}>
+    <group ref={meshRef}>
       {props.children}
       {props.debug && <Debugger />}
     </group>
