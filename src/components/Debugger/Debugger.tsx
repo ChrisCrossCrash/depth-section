@@ -6,6 +6,8 @@ export const Debugger = () => {
   const heightMesh = (viewport.height * size.height) / window.innerHeight / 3
   const widthMesh = (viewport.width * size.width) / window.innerWidth / 3
 
+  console.log(`x: ${widthMesh.toFixed(3)} y:${heightMesh.toFixed(3)}`)
+
   return (
     <>
       <mesh>
