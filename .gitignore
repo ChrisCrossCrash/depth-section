@@ -12,6 +12,9 @@
 /build
 /dist
 
+# local notes/.blend files
+/notes
+
 # misc
 .DS_Store
 .env.local
