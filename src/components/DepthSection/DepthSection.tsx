@@ -3,6 +3,7 @@ import * as THREE from 'three'
 import { Canvas, Object3DNode, useFrame, useThree } from '@react-three/fiber'
 import { InView } from 'react-intersection-observer'
 import { Debugger } from '../Debugger/Debugger'
+import { useGetVh } from '../../hooks/useGetVh'
 
 export type DepthSectionProps = {
   /**
@@ -30,6 +31,8 @@ const DepthSectionInner = (props: DepthSectionInnerProps) => {
   const { invalidate } = useThree()
   useEffect(invalidate, [props.inView])
 
+  const getVh = useGetVh()
+
   useFrame((threeState) => {
     const mesh = meshRef.current
     const canvas = threeState.gl.domElement
@@ -44,7 +47,7 @@ const DepthSectionInner = (props: DepthSectionInnerProps) => {
     /** Height of the canvas in pixels */
     const hc = threeState.size.height
     /** Height of the window (viewport) in pixels */
-    const hw = window.innerHeight
+    const hw = getVh()
 
     // Make the mesh move with the page scroll
     // (I'm not really sure how this works, but it does)
@@ -52,14 +55,14 @@ const DepthSectionInner = (props: DepthSectionInnerProps) => {
 
     // Make the camera offset match the page scroll
     threeState.camera.setViewOffset(
-      window.innerWidth,
-      window.innerHeight * 3,
+      hw,
+      hw * 3,
       canvas.getBoundingClientRect().left,
       // The offset is at:
       // 2 * window.innerHeight when the top of the canvas is just scrolling into view.
       // window.innerHeight when the canvas is centered on the page.
       // 0 after just scrolling past the canvas.
-      window.innerHeight + canvas.getBoundingClientRect().top,
+      hw + canvas.getBoundingClientRect().top,
       threeState.size.width,
       threeState.size.height
     )
