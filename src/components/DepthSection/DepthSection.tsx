@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 import { Canvas, Object3DNode, useFrame, useThree } from '@react-three/fiber'
-import { useInView } from 'react-intersection-observer'
+import { InView } from 'react-intersection-observer'
 import { Debugger } from '../Debugger/Debugger'
 
 export type DepthSectionProps = {
@@ -78,24 +78,28 @@ const DepthSectionInner = (props: DepthSectionInnerProps) => {
 // We need to wrap the DepthSectionInner compponent with a `Canvas` so we can use
 // R3F hooks in it.
 /** A Three JS canvas with a custom GLTF background. */
-export const DepthSection = (props: DepthSectionProps) => {
-  const { ref, inView } = useInView()
-  return (
-    <div style={{ position: 'relative', height: '100%', width: '100%' }}>
-      <Canvas frameloop='demand' ref={ref}>
-        <DepthSectionInner inView={inView} {...props} />
-      </Canvas>
+export const DepthSection = (props: DepthSectionProps) => (
+  <InView as='div'>
+    {({ inView, ref }) => (
       <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          height: '100%',
-          width: '100%',
-        }}
+        ref={ref}
+        style={{ position: 'relative', height: '100%', width: '100%' }}
       >
-        {props.htmlOverlay}
+        <Canvas frameloop='demand'>
+          <DepthSectionInner inView={inView} {...props} />
+        </Canvas>
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            height: '100%',
+            width: '100%',
+          }}
+        >
+          {props.htmlOverlay}
+        </div>
       </div>
-    </div>
-  )
-}
+    )}
+  </InView>
+)
