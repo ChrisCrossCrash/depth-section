@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from 'react'
-import * as THREE from 'three'
+import React, { useEffect } from 'react'
 import { Canvas, Object3DNode, useFrame, useThree } from '@react-three/fiber'
 import { InView } from 'react-intersection-observer'
 import { Debugger } from '../Debugger/Debugger'
@@ -24,8 +23,6 @@ type DepthSectionInnerProps = Omit<DepthSectionProps, 'htmlOverlay'> & {
 }
 
 const DepthSectionInner = (props: DepthSectionInnerProps) => {
-  const meshRef = useRef<THREE.Group>(null!)
-
   // Trigger `invalidate()` when `inView` changes.
   // This restarts the render loop when the DepthSection comes back into view.
   const { invalidate } = useThree()
@@ -34,24 +31,13 @@ const DepthSectionInner = (props: DepthSectionInnerProps) => {
   const getVh = useGetVh()
 
   useFrame((threeState) => {
-    const mesh = meshRef.current
     const canvas = threeState.gl.domElement
 
     // Stop the render loop when the DepthSection is not in view.
     if (!props.inView) return
 
-    /** Height of the viewport in meters */
-    const hv = threeState.viewport.height
-    /** How far the top fo the canvas is from the top of the viewport in pixels */
-    const t = canvas.getBoundingClientRect().top
-    /** Height of the canvas in pixels */
-    const hc = threeState.size.height
     /** Height of the window (viewport) in pixels */
     const hw = getVh()
-
-    // Make the mesh move with the page scroll
-    // (I'm not really sure how this works, but it does)
-    mesh.position.y = (-hv * (2 * t + hc - hw)) / (6 * hw)
 
     // Make the camera offset match the page scroll
     threeState.camera.setViewOffset(
@@ -71,10 +57,10 @@ const DepthSectionInner = (props: DepthSectionInnerProps) => {
   })
 
   return (
-    <group ref={meshRef}>
+    <>
       {props.children}
       {props.debug && <Debugger />}
-    </group>
+    </>
   )
 }
 
