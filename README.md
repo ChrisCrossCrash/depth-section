@@ -1,6 +1,8 @@
 # Depth Section
 
-Easy to use 3D models for your page with a parallax scrolling effect.
+What's a depth section? The best way to learn is by checking out the [storybook examples](https://depth-section.vercel.app).
+
+Depth sections add visual depth to your page with 3D elements that respond to the user's scroll position.
 
 Stay tuned! New background models and features are on the way!
 
@@ -63,10 +65,10 @@ Right now, the GLTF files used in the backgrounds can only be served from the [C
 
 `DepthSection` is the core component of the the library on which all other components are built. It has two main responsibilities:
 
-- Render its `children` on a Three.js canvas with the position and camera offset needed to create a parallax effect when it is scrolled through the viewport.
+- Render its `children` on a Three.js canvas with the camera offset needed to create a parallax effect when it is scrolled through the viewport. **`DepthSection` does not change the position of child elements**. It is the responsibility of the child element to adjust its own position in the world space.
 - Render its `htmlOverlay` prop inside of a container which fills 100% of the canvas's height and width.
 
-`DepthSection`'s `children` are `@react-three/fiber` components. They don't contain any fancy animation logic relating to the parallax scrolling effect. They are simply 3D elements that appear in the scene.
+`DepthSection`'s `children` are `@react-three/fiber` components. They are simply 3D elements that appear in the scene.
 
 Let's see how we can use `DepthSection` to create a new 3D background:
 
