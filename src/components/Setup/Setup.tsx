@@ -1,8 +1,11 @@
+import './Setup.css'
 type SetupProps = { children: React.ReactNode }
 
 export const Setup = (props: SetupProps) => (
-  <div style={{ height: '300vh' }}>
-    <div style={{ height: '80vh', color: 'white' }}>Scroll down...</div>
-    <div style={{ height: '100vh' }}>{props.children}</div>
+  <div className='base'>
+    <div className='filler'>
+      <h1>Scroll down 👇</h1>
+    </div>
+    <div className='depth-section-container'>{props.children}</div>
   </div>
 )

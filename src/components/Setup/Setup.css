@@ -1,0 +1,14 @@
+.base {
+  height: 300vh;
+}
+
+.filler {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.depth-section-container {
+  height: 100vh;
+}
