@@ -76,7 +76,11 @@ Let's see how we can use `DepthSection` to create a new 3D background:
 import { DepthSection } from '../DepthSection/DepthSection'
 import type { GroupProps } from '@react-three/fiber'
 
-/** The component to be exported to the application. */
+/** The component to be exported to the application.
+ *
+ * This is very simplified. In a real component, you would probably want to at
+ * least animate the mesh's vertical position to match the camera offset.
+ */
 export const TorusKnotSection = (props: { children?: React.ReactNode }) => (
   <DepthSection htmlOverlay={props.children}>
     <mesh>
