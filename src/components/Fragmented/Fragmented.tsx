@@ -54,10 +54,11 @@ type FragmentedProps = {
    * https://threejs.org/docs/#api/en/materials/MeshStandardMaterial
    */
   materialProps?: JSX.IntrinsicElements['meshStandardMaterial']
+  debug?: boolean
 }
 
 export const Fragmented = (props: FragmentedProps) => (
-  <DepthSection htmlOverlay={props.children}>
+  <DepthSection htmlOverlay={props.children} debug={props.debug}>
     <Suspense fallback={null}>
       <FragmentedBGMesh
         scale={5}

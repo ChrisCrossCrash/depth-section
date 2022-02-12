@@ -67,10 +67,11 @@ const FloatySphereInner = () => {
 
 type FloatySphereProps = {
   children?: React.ReactNode
+  debug?: boolean
 }
 
 export const FloatySphere = (props: FloatySphereProps) => (
-  <DepthSection htmlOverlay={props.children}>
+  <DepthSection htmlOverlay={props.children} debug={props.debug}>
     <Suspense fallback={null}>
       <FloatySphereInner />
     </Suspense>
