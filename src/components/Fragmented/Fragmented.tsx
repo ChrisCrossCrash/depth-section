@@ -2,7 +2,7 @@ import { Suspense, useRef } from 'react'
 import { DepthSection } from '../DepthSection/DepthSection'
 import * as THREE from 'three'
 import { useGLTF, Environment } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
+import { useFrame, MeshStandardMaterialProps } from '@react-three/fiber'
 import type { GroupProps } from '@react-three/fiber'
 
 const fragmentedModelUrl =
@@ -11,7 +11,7 @@ const fragmentedModelUrl =
 useGLTF.preload(fragmentedModelUrl)
 
 type FragmentedBGMeshProps = GroupProps & {
-  materialProps?: JSX.IntrinsicElements['meshStandardMaterial']
+  materialProps?: MeshStandardMaterialProps
 }
 
 const FragmentedBGMesh = ({
