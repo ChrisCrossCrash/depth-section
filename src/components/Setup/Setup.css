@@ -11,4 +11,14 @@
 
 .depth-section-container {
   height: 100vh;
+  display: flex;
+}
+
+.half-width {
+  padding-left: 50%;
+  width: 50%;
+}
+
+.half-height {
+  height: 50vh;
 }
