@@ -10,9 +10,14 @@ const fragmentedModelUrl =
 
 useGLTF.preload(fragmentedModelUrl)
 
-type FragmentedBGMeshProps = GroupProps
+type FragmentedBGMeshProps = GroupProps & {
+  materialProps?: JSX.IntrinsicElements['meshStandardMaterial']
+}
 
-const FragmentedBGMesh = (props: FragmentedBGMeshProps) => {
+const FragmentedBGMesh = ({
+  materialProps,
+  ...props
+}: FragmentedBGMeshProps) => {
   const { nodes } = useGLTF(fragmentedModelUrl) as any
   const ref = useRef<THREE.Group>(null)
 
@@ -35,7 +40,7 @@ const FragmentedBGMesh = (props: FragmentedBGMeshProps) => {
   return (
     <group ref={ref} {...props} dispose={null}>
       <mesh geometry={nodes.Grid.geometry} rotation={[Math.PI / 2, 0, 0]}>
-        <meshStandardMaterial color='#270082' roughness={0.3} metalness={0.5} />
+        <meshStandardMaterial {...materialProps} />
       </mesh>
       <Environment preset='city' />
     </group>
@@ -44,12 +49,21 @@ const FragmentedBGMesh = (props: FragmentedBGMeshProps) => {
 
 type FragmentedProps = {
   children?: React.ReactNode
+  /** Three JS `meshStandardMaterial` properties.
+   *
+   * https://threejs.org/docs/#api/en/materials/MeshStandardMaterial
+   */
+  materialProps?: JSX.IntrinsicElements['meshStandardMaterial']
 }
 
 export const Fragmented = (props: FragmentedProps) => (
   <DepthSection htmlOverlay={props.children}>
     <Suspense fallback={null}>
-      <FragmentedBGMesh scale={5} position={[0, 0, -5]} />
+      <FragmentedBGMesh
+        scale={5}
+        position={[0, 0, -5]}
+        materialProps={props.materialProps}
+      />
     </Suspense>
   </DepthSection>
 )
