@@ -30,27 +30,28 @@ const DepthSectionInner = (props: DepthSectionInnerProps) => {
 
   const getVh = useGetVh()
 
-  useFrame((threeState) => {
+  useFrame(({ size, ...threeState }) => {
     const canvas = threeState.gl.domElement
+    const { top, left } = canvas.getBoundingClientRect()
 
     // Stop the render loop when the DepthSection is not in view.
     if (!props.inView) return
 
     /** Height of the window (viewport) in pixels */
-    const hw = getVh()
+    const fullVh = getVh()
 
     // Make the camera offset match the page scroll
     threeState.camera.setViewOffset(
       window.innerWidth,
-      hw * 3,
-      canvas.getBoundingClientRect().left,
+      fullVh * 3,
+      left,
       // The offset is at:
       // 2 * window.innerHeight when the top of the canvas is just scrolling into view.
       // window.innerHeight when the canvas is centered on the page.
       // 0 after just scrolling past the canvas.
-      hw + canvas.getBoundingClientRect().top,
-      threeState.size.width,
-      threeState.size.height
+      fullVh + top,
+      size.width,
+      size.height
     )
 
     threeState.invalidate()
