@@ -4,7 +4,7 @@ import * as THREE from 'three'
 import { Sphere, Torus } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 
-const SpringySpheresInner = () => {
+const FloatySphereInner = () => {
   const sphereRef = useRef<THREE.Mesh>(null)
   const torusRef = useRef<THREE.Mesh>(null)
 
@@ -65,14 +65,14 @@ const SpringySpheresInner = () => {
   )
 }
 
-type SpringySpheresProps = {
+type FloatySphereProps = {
   children?: React.ReactNode
 }
 
-export const SpringySpheres = (props: SpringySpheresProps) => (
+export const FloatySphere = (props: FloatySphereProps) => (
   <DepthSection htmlOverlay={props.children}>
     <Suspense fallback={null}>
-      <SpringySpheresInner />
+      <FloatySphereInner />
     </Suspense>
   </DepthSection>
 )
