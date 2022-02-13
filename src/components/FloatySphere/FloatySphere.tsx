@@ -21,7 +21,14 @@ const FloatySphereInner = () => {
     // What is shown on the canvas is the subcam, which is 1/3 of the full
     // camera height, so we must divide viewport.height by 3 to get the height
     // of the subcam view in meters.
-    const cameraAimHeight = (mappedProgress * threeState.viewport.height) / 3
+
+    /** Extra offset to account for when the element's height is not 100vh */
+    const extraOffsetPx = -(window.innerHeight - threeState.size.height) / 2
+    const pxPerMeter = threeState.size.height / threeState.viewport.height
+    /** The amount needed to account for when the canvas is not 100vh. */
+    const extraOffsetMeters = extraOffsetPx / pxPerMeter / 6
+    const cameraAimHeight =
+      (mappedProgress * threeState.viewport.height) / 3 - extraOffsetMeters
 
     torusMesh.position.y = cameraAimHeight
     sphereMesh.position.y = THREE.MathUtils.lerp(
