@@ -51,7 +51,9 @@ const DepthSectionInner = (props: DepthSectionInnerProps) => {
 
     // Make the camera offset match the page scroll
     threeState.camera.setViewOffset(
-      window.innerWidth,
+      // document.body.clientWidth is like window.innerWidth, but
+      // it doesn't include the scrollbar.
+      document.body.clientWidth,
       fullVh * 3,
       left,
       // The offset is at:
