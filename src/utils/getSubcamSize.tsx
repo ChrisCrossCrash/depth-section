@@ -6,8 +6,9 @@ export const getSubcamHeight = ({ viewport, size }: RootState) => {
 }
 
 /** Return the width of the subcam. */
-export const getSubcamWidth = (state: RootState) => {
-  return state.viewport.width / 3
+export const getSubcamWidth = ({ viewport, size }: RootState) => {
+  const heightFraction = size.height / window.innerHeight
+  return (heightFraction * viewport.width) / 3
 }
 
 /** Return the height and width of the subcam. */
