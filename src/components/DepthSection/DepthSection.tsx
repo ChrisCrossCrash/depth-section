@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react'
-import { Canvas, Object3DNode, useFrame, useThree } from '@react-three/fiber'
+import {
+  Canvas,
+  Object3DNode,
+  useFrame,
+  useThree,
+  Props,
+} from '@react-three/fiber'
 import { InView } from 'react-intersection-observer'
 import { Debugger } from '../Debugger/Debugger'
 import { useGetVh } from '../../utils/useGetVh'
@@ -18,6 +24,8 @@ export type DepthSectionProps = {
   htmlOverlay?: React.ReactNode
   canvasClassName?: string
   canvasStyle?: React.CSSProperties
+  /** The `camera` prop to pass to the R3F `Canvas` component. */
+  camera?: Props['camera']
 }
 
 type DepthSectionInnerProps = Omit<DepthSectionProps, 'htmlOverlay'> & {
@@ -84,6 +92,7 @@ export const DepthSection = (props: DepthSectionProps) => (
             ...props.canvasStyle,
             backgroundColor: props.debug ? 'green' : '',
           }}
+          camera={props.camera}
         >
           <DepthSectionInner inView={inView} {...props} />
         </Canvas>
