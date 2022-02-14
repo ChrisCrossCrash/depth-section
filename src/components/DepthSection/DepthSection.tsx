@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Canvas, Object3DNode, useFrame, useThree } from '@react-three/fiber'
 import { InView } from 'react-intersection-observer'
 import { Debugger } from '../Debugger/Debugger'
-import { useGetVh } from '../../hooks/useGetVh'
+import { useGetVh } from '../../utils/useGetVh'
 
 export type DepthSectionProps = {
   /**

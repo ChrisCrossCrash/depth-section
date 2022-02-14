@@ -3,7 +3,7 @@ import { DepthSection } from '../DepthSection/DepthSection'
 import * as THREE from 'three'
 import { Sphere, Torus } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
-import { getCameraAimPos } from '../../hooks/getCameraAimPos'
+import { getCameraAimPos } from '../../utils/getCameraAimPos'
 
 const FloatySphereInner = () => {
   const sphereRef = useRef<THREE.Mesh>(null)
