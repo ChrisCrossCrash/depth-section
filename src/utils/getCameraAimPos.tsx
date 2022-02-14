@@ -1,16 +1,23 @@
 import { RootState } from '@react-three/fiber'
+import { getSubcamWidth } from './getSubcamSize'
 
 /** Return the y position along the xy plane in which the camera is pointed */
 export const getCameraAimPosX = (state: RootState) => {
-  const pxPerMeter = state.size.width / (state.viewport.width / 3)
+  const pxPerMeter = state.size.width / getSubcamWidth(state)
   const left = state.gl.domElement.getBoundingClientRect().left
+  const windowWidth = document.body.clientWidth / pxPerMeter
 
   // get everything in terms of it's distance from the left edge of the window.
-  const posLeft = -(state.viewport.width / 3) / 2
-  const aimXPx = left + state.size.width / 2
-  const aimX = posLeft + aimXPx / pxPerMeter
+  const posLeft = -windowWidth / 2
 
-  return aimX / 2
+  // Get the pixel distance from the left edge of the screen to the center of the canvas.
+  const pxDistance = left + state.size.width / 2
+
+  // convert the pixel distance to meters.
+  const aimPosX = pxDistance / pxPerMeter
+
+  // The result is the distance from the left edge to the center of the camera in meters.
+  return posLeft + aimPosX
 }
 
 /** Return the y position along the xy plane in which the camera is pointed */
