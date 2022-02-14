@@ -11,13 +11,13 @@ Stay tuned! New background models and features are on the way!
 In your React project, run:
 
 ```
-npm install depth-section three
+npm install depth-section three @react-three/fiber
 ```
 
 Or
 
 ```
-yarn add depth-section three
+yarn add depth-section three @react-three/fiber
 ```
 
 ## Usage
