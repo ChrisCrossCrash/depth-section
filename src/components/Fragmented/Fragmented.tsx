@@ -4,6 +4,7 @@ import * as THREE from 'three'
 import { useGLTF, Environment } from '@react-three/drei'
 import { useFrame, MeshStandardMaterialProps } from '@react-three/fiber'
 import type { GroupProps } from '@react-three/fiber'
+import { getCameraAimPos } from '../../utils/getCameraAimPos'
 
 const fragmentedModelUrl =
   'https://chriscrosscrash.github.io/depth-section/public/fragmented.glb'
@@ -27,16 +28,10 @@ const FragmentedBGMesh = ({
     const mesh = ref.current
     if (!mesh) return
 
-    const o = threeState.gl.domElement.getBoundingClientRect().top
-    const w = window.innerHeight
-    /** The scroll porgress, where -1 is entering an 1 is leaving screen. */
-    const mappedProgress = (w - o) / w - 1
-    // What is shown on the canvas is the subcam, which is 1/3 of the full
-    // camera height, so we must divide viewport.height by 3 to get the height
-    // of the subcam view in meters.
-    const cameraAimHeight = (mappedProgress * threeState.viewport.height) / 3
+    const [x, y] = getCameraAimPos(threeState)
 
-    mesh.position.y = cameraAimHeight
+    mesh.position.x = x
+    mesh.position.y = y
   })
 
   return (
