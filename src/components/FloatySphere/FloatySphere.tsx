@@ -1,41 +1,27 @@
-import { Suspense, useRef } from 'react'
+import { Suspense, useRef, useEffect } from 'react'
 import { DepthSection } from '../DepthSection/DepthSection'
 import * as THREE from 'three'
 import { Sphere, Torus } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
+import { getCameraAimPos } from '../../hooks/getCameraAimPos'
 
 const FloatySphereInner = () => {
   const sphereRef = useRef<THREE.Mesh>(null)
   const torusRef = useRef<THREE.Mesh>(null)
 
   useFrame((threeState) => {
+    getCameraAimPos(threeState)
     const sphereMesh = sphereRef.current
     const torusMesh = torusRef.current
 
     if (!sphereMesh || !torusMesh) return
 
-    const o = threeState.gl.domElement.getBoundingClientRect().top
-    const w = window.innerHeight
-    /** The scroll porgress, where -1 is entering an 1 is leaving screen. */
-    const mappedProgress = (w - o) / w - 1
-    // What is shown on the canvas is the subcam, which is 1/3 of the full
-    // camera height, so we must divide viewport.height by 3 to get the height
-    // of the subcam view in meters.
+    const [x, y] = getCameraAimPos(threeState)
 
-    /** Extra offset to account for when the element's height is not 100vh */
-    const extraOffsetPx = -(window.innerHeight - threeState.size.height) / 2
-    const pxPerMeter = threeState.size.height / threeState.viewport.height
-    /** The amount needed to account for when the canvas is not 100vh. */
-    const extraOffsetMeters = extraOffsetPx / pxPerMeter / 6
-    const cameraAimHeight =
-      (mappedProgress * threeState.viewport.height) / 3 - extraOffsetMeters
-
-    torusMesh.position.y = cameraAimHeight
-    sphereMesh.position.y = THREE.MathUtils.lerp(
-      cameraAimHeight,
-      sphereMesh.position.y,
-      0.85
-    )
+    torusMesh.position.y = y
+    torusMesh.position.x = x
+    sphereMesh.position.y = THREE.MathUtils.lerp(y, sphereMesh.position.y, 0.85)
+    sphereMesh.position.x = x
   })
 
   return (
