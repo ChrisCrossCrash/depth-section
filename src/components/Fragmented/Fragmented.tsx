@@ -6,7 +6,9 @@ import { useFrame, MeshStandardMaterialProps } from '@react-three/fiber'
 import type { GroupProps } from '@react-three/fiber'
 
 const fragmentedModelUrl =
-  'https://chriscrosscrash.github.io/depth-section/fragmented.glb'
+  'https://chriscrosscrash.github.io/depth-section/public/fragmented.glb'
+const environmentHdriUrl =
+  'https://chriscrosscrash.github.io/depth-section/public/lebombo_1k.hdr'
 
 useGLTF.preload(fragmentedModelUrl)
 
@@ -42,7 +44,7 @@ const FragmentedBGMesh = ({
       <mesh geometry={nodes.Grid.geometry} rotation={[Math.PI / 2, 0, 0]}>
         <meshStandardMaterial {...materialProps} />
       </mesh>
-      <Environment preset='city' />
+      <Environment files={environmentHdriUrl} />
     </group>
   )
 }
