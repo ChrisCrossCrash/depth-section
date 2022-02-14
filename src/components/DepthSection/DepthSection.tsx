@@ -24,11 +24,10 @@ export type DepthSectionProps = {
   htmlOverlay?: React.ReactNode
   canvasClassName?: string
   canvasStyle?: React.CSSProperties
-  /** The `camera` prop to pass to the R3F `Canvas` component. */
-  camera?: Props['camera']
+  canvasProps?: Props
 }
 
-type DepthSectionInnerProps = Omit<DepthSectionProps, 'htmlOverlay'> & {
+type DepthSectionInnerProps = Pick<DepthSectionProps, 'children' | 'debug'> & {
   inView: boolean
 }
 
@@ -78,7 +77,13 @@ const DepthSectionInner = (props: DepthSectionInnerProps) => {
 // We need to wrap the DepthSectionInner compponent with a `Canvas` so we can use
 // R3F hooks in it.
 /** A Three JS canvas with a custom GLTF background. */
-export const DepthSection = (props: DepthSectionProps) => (
+export const DepthSection = ({
+  canvasProps,
+  canvasClassName,
+  canvasStyle,
+  htmlOverlay,
+  ...props
+}: DepthSectionProps) => (
   <InView as='div'>
     {({ inView, ref }) => (
       <div
@@ -86,13 +91,13 @@ export const DepthSection = (props: DepthSectionProps) => (
         style={{ position: 'relative', height: '100%', width: '100%' }}
       >
         <Canvas
-          className={props.canvasClassName}
+          className={canvasClassName}
           frameloop='demand'
           style={{
-            ...props.canvasStyle,
+            ...canvasStyle,
             backgroundColor: props.debug ? 'green' : '',
           }}
-          camera={props.camera}
+          {...canvasProps}
         >
           <DepthSectionInner inView={inView} {...props} />
         </Canvas>
@@ -105,7 +110,7 @@ export const DepthSection = (props: DepthSectionProps) => (
             width: '100%',
           }}
         >
-          {props.htmlOverlay}
+          {htmlOverlay}
         </div>
       </div>
     )}
