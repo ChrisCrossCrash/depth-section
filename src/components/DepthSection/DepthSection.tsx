@@ -75,7 +75,10 @@ export const DepthSection = (props: DepthSectionProps) => (
         ref={ref}
         style={{ position: 'relative', height: '100%', width: '100%' }}
       >
-        <Canvas frameloop='demand'>
+        <Canvas
+          frameloop='demand'
+          style={{ backgroundColor: props.debug ? 'green' : '' }}
+        >
           <DepthSectionInner inView={inView} {...props} />
         </Canvas>
         <div
