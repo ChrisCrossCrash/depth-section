@@ -16,6 +16,8 @@ export type DepthSectionProps = {
   debug?: boolean
   /** The HTML content to be displayed in the DepthSection */
   htmlOverlay?: React.ReactNode
+  canvasClassName?: string
+  canvasStyle?: React.CSSProperties
 }
 
 type DepthSectionInnerProps = Omit<DepthSectionProps, 'htmlOverlay'> & {
@@ -76,8 +78,12 @@ export const DepthSection = (props: DepthSectionProps) => (
         style={{ position: 'relative', height: '100%', width: '100%' }}
       >
         <Canvas
+          className={props.canvasClassName}
           frameloop='demand'
-          style={{ backgroundColor: props.debug ? 'green' : '' }}
+          style={{
+            ...props.canvasStyle,
+            backgroundColor: props.debug ? 'green' : '',
+          }}
         >
           <DepthSectionInner inView={inView} {...props} />
         </Canvas>
