@@ -4,7 +4,7 @@ import { Setup, HtmlContent } from '../Setup/Setup'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'PointGrid',
+  title: 'Stars',
   component: Stars,
 } as ComponentMeta<typeof Stars>
 
