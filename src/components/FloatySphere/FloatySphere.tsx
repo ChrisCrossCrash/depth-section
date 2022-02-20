@@ -1,4 +1,4 @@
-import { Suspense, useRef, useEffect } from 'react'
+import { Suspense, useRef } from 'react'
 import { DepthSection } from '../DepthSection/DepthSection'
 import * as THREE from 'three'
 import { Sphere, Torus } from '@react-three/drei'
