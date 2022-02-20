@@ -1,7 +1,7 @@
 import { DepthSection } from '../DepthSection/DepthSection'
 import * as THREE from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
-import { getCameraAimPosY } from '../..'
+import { getCameraAimPosY } from '../../utils/getCameraAimPos'
 
 const StarsInner = () => {
   const { scene } = useThree()
