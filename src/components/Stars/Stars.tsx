@@ -22,7 +22,7 @@ const StarsInner = () => {
     'position',
     new THREE.Float32BufferAttribute(vertices, 3)
   )
-  const material = new THREE.PointsMaterial({ size: 0.2 })
+  const material = new THREE.PointsMaterial({ size: 0.1 })
   const points = new THREE.Points(geometry, material)
 
   useFrame((state) => {
