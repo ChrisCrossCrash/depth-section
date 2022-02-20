@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { Galaxy } from './Galaxy'
-import { Setup, HtmlContent } from '../Setup/Setup'
+import { Setup, HtmlContent } from '../../core/Setup/Setup'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

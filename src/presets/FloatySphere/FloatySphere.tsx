@@ -1,5 +1,5 @@
 import { Suspense, useRef } from 'react'
-import { DepthSection } from '../DepthSection/DepthSection'
+import { DepthSection } from '../../core/DepthSection/DepthSection'
 import * as THREE from 'three'
 import { Sphere, Torus } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'

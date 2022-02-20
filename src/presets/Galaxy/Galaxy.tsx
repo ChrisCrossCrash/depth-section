@@ -1,4 +1,4 @@
-import { DepthSection } from '../DepthSection/DepthSection'
+import { DepthSection } from '../../core/DepthSection/DepthSection'
 import * as THREE from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import { getCameraAimPos } from '../../utils/getCameraAimPos'
