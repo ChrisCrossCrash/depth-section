@@ -2,6 +2,7 @@ import { DepthSection } from './components/DepthSection/DepthSection'
 import { Fragmented } from './components/Fragmented/Fragmented'
 import { FloatySphere } from './components/FloatySphere/FloatySphere'
 import { Stars } from './components/Stars/Stars'
+import { Galaxy } from './components/Galaxy/Galaxy'
 
 import {
   getSubcamHeight,
@@ -20,6 +21,7 @@ export {
   Fragmented,
   FloatySphere,
   Stars,
+  Galaxy,
   // Utils
   getSubcamHeight,
   getSubcamWidth,
