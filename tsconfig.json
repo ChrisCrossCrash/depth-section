@@ -20,7 +20,6 @@
     "jsx": "react-jsx",
     "declaration": true,
     "declarationDir": ".",
-    "sourceMap": true,
     "outDir": "dist",
     "emitDeclarationOnly": true,
   },

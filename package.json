@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "format": "prettier --write .",
-    "build": "rollup -c -m",
+    "build": "rollup -c",
     "storybook": "start-storybook -p 43000",
     "storybook-lan": "start-storybook -h 0.0.0.0 -p 43000",
     "build-storybook": "build-storybook"
