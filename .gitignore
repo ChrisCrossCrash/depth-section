@@ -28,3 +28,5 @@ yarn-error.log*
 
 # ES Lint
 .eslintcache
+
+/storybook-static/
