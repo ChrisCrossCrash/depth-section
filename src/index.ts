@@ -3,6 +3,7 @@ import { Fragmented } from './presets/Fragmented/Fragmented'
 import { FloatySphere } from './presets/FloatySphere/FloatySphere'
 import { Stars } from './presets/Stars/Stars'
 import { Galaxy } from './presets/Galaxy/Galaxy'
+import { TheGrid } from './presets/TheGrid/TheGrid'
 
 import {
   getSubcamHeight,
@@ -22,6 +23,7 @@ export {
   FloatySphere,
   Stars,
   Galaxy,
+  TheGrid,
   // Utils
   getSubcamHeight,
   getSubcamWidth,
