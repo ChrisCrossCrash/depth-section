@@ -28,9 +28,18 @@ export default {
   ],
   external: ['react', 'react-dom', 'three'],
   onwarn(warning, warn) {
-    // skip `EVAL``warnings related to Chevrotain
+    // skip `EVAL` warnings related to Chevrotain
     // https://github.com/Chevrotain/chevrotain/issues/1760
     if (warning.code === 'EVAL' && warning.id?.includes('chevrotain')) return
+
+    // skip `CIRCULAR_DEPENDENCY` warnings related to Chevrotain
+    if (
+      warning.code === 'CIRCULAR_DEPENDENCY' &&
+      warning.message?.includes('chevrotain')
+    )
+      return
+
+    console.dir(warning)
 
     // Use default behavior for everything else
     warn(warning)
