@@ -20,7 +20,12 @@ export type DepthSectionProps = {
   children: Object3DNode<any, any> | null
   /** Render a debug mesh into the scene and log some extra information into the console */
   debug?: boolean
-  /** The HTML content to be displayed in the DepthSection */
+  /** The HTML content to be displayed on top of the DepthSection.
+   *
+   * Note that this will prevent some interaction with elements inside the R3F Canvas,
+   * since the canvas will be completely covered by the `htmlOverlay` div.
+   * For example, an `onClick` event on a `mesh` will not work.
+   */
   htmlOverlay?: React.ReactNode
   canvasClassName?: string
   canvasStyle?: React.CSSProperties
