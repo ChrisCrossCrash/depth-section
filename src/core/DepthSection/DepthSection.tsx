@@ -103,17 +103,22 @@ export const DepthSection = ({
         >
           <DepthSectionInner inView={inView} {...props} />
         </Canvas>
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            height: '100%',
-            width: '100%',
-          }}
-        >
-          {htmlOverlay}
-        </div>
+        {/* Only render the HTML overlay if it has been provided.
+            The HTML overlay will block events like `onClick` for the
+            R3F elements on the canvas. */}
+        {htmlOverlay && (
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              height: '100%',
+              width: '100%',
+            }}
+          >
+            {htmlOverlay}
+          </div>
+        )}
       </div>
     )}
   </InView>
