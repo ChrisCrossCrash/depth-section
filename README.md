@@ -93,11 +93,13 @@ const AboutSection = () => (
   <TorusKnotSection>
     <div className='about-section'>
       <h1>About</h1>
+      {/* cspell: disable */}
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod,
         nisi eu aliquam consectetur, nisl nisi consectetur nisl, eget tincidunt
         nisl nisl vitae nisl.
       </p>
+      {/* cspell: enable */}
     </div>
   </TorusKnotSection>
 )

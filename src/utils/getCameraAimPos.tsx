@@ -24,7 +24,7 @@ export const getCameraAimPosX = (state: RootState) => {
 export const getCameraAimPosY = (state: RootState) => {
   const o = state.gl.domElement.getBoundingClientRect().top
   const w = window.innerHeight
-  /** The scroll porgress, where -1 is entering an 1 is leaving screen. */
+  /** The scroll progress, where -1 is entering an 1 is leaving screen. */
   const mappedProgress = (w - o) / w - 1
   // What is shown on the canvas is the subcam, which is 1/3 of the full
   // camera height, so we must divide viewport.height by 3 to get the height

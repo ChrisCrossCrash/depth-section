@@ -81,7 +81,7 @@ const DepthSectionInner = (props: DepthSectionInnerProps) => {
   )
 }
 
-// We need to wrap the DepthSectionInner compponent with a `Canvas` so we can use
+// We need to wrap the DepthSectionInner component with a `Canvas` so we can use
 // R3F hooks in it.
 /** A Three JS canvas with a custom GLTF background. */
 export const DepthSection = ({

@@ -30,3 +30,6 @@ yarn-error.log*
 .eslintcache
 
 /storybook-static/
+
+# Spellchecker configuration
+cspell.json
