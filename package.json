@@ -16,7 +16,7 @@
   "scripts": {
     "format": "prettier --write .",
     "build": "rollup -c",
-    "storybook": "start-storybook",
+    "storybook": "start-storybook -p 3000",
     "build-storybook": "build-storybook"
   },
   "peerDependencies": {
