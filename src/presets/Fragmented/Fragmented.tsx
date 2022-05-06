@@ -11,8 +11,6 @@ const fragmentedModelUrl =
 const environmentHdriUrl =
   'https://chriscrosscrash.github.io/depth-section/public/lebombo_1k.hdr'
 
-useGLTF.preload(fragmentedModelUrl)
-
 type FragmentedBGMeshProps = GroupProps & {
   materialProps?: MeshStandardMaterialProps
 }
