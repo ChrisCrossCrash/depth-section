@@ -18,7 +18,7 @@ type GLTFResult = GLTF & {
 
 export default function Model({ ...props }: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>() as React.MutableRefObject<THREE.Group>
-  const { nodes, materials } = useGLTF('/r-place.glb') as GLTFResult
+  const { nodes, materials } = useGLTF('/r-place.glb', '/') as GLTFResult
   return (
     <group ref={group} {...props} dispose={null}>
       <mesh
