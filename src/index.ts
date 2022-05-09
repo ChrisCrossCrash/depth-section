@@ -4,7 +4,6 @@ import { FloatySphere } from './presets/FloatySphere/FloatySphere'
 import { Stars } from './presets/Stars/Stars'
 import { Galaxy } from './presets/Galaxy/Galaxy'
 import { TheGrid } from './presets/TheGrid/TheGrid'
-import { RPlace } from './presets/RPlace/RPlace'
 
 import {
   getSubcamHeight,
@@ -25,7 +24,6 @@ export {
   Stars,
   Galaxy,
   TheGrid,
-  RPlace,
   // Utils
   getSubcamHeight,
   getSubcamWidth,
