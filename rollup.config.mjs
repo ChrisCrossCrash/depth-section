@@ -26,7 +26,13 @@ export default {
     typescript({ tsconfig: './tsconfig.json' }),
     terser(),
   ],
-  external: ['react', 'react-dom', 'three'],
+  external: [
+    'react',
+    'react-dom',
+    'three',
+    '@react-three/drei',
+    '@react-three/fiber',
+  ],
   onwarn(warning, warn) {
     // skip `EVAL` warnings related to Chevrotain
     // https://github.com/Chevrotain/chevrotain/issues/1760
