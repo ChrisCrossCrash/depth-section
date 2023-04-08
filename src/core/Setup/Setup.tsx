@@ -1,4 +1,4 @@
-import './Setup.css'
+import styles from './Setup.module.scss'
 
 export const HtmlContent = (
   <div
@@ -23,14 +23,14 @@ type SetupProps = {
 }
 
 export const Setup = (props: SetupProps) => (
-  <div className='base'>
-    <div className='filler'>
+  <div className={styles.base}>
+    <div className={styles.filler}>
       <h1>Scroll down 👇</h1>
     </div>
     <div
-      className={`depth-section-container ${
-        props.halfHeight ? 'half-height' : ''
-      } ${props.halfWidth ? 'half-width' : ''}`}
+      className={`${styles.depthSectionContainer} ${
+        props.halfHeight ? styles.halfHeight : ''
+      } ${props.halfWidth ? styles.halfWidth : ''}`}
     >
       {props.children}
     </div>
