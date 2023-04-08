@@ -1,6 +1,7 @@
-const path = require('path')
+import type { StorybookConfig } from '@storybook/react-webpack5'
+import path from 'path'
 
-module.exports = {
+const storybookConfig: StorybookConfig = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-essentials'],
   staticDirs: ['../public'],
@@ -11,7 +12,11 @@ module.exports = {
   docs: {
     autodocs: true,
   },
-  webpackFinal: async (config, { configType }) => {
+  webpackFinal: async (config) => {
+    if (!config.module?.rules) {
+      throw new Error('No rules found in webpack config')
+    }
+
     config.module.rules.push({
       test: /\.scss$/,
       use: [
@@ -32,3 +37,5 @@ module.exports = {
     return config
   },
 }
+
+export default storybookConfig
