@@ -1,16 +1,7 @@
 import styles from './Setup.module.scss'
 
 export const HtmlContent = (
-  <div
-    style={{
-      height: '100%',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      fontFamily: 'sans-serif',
-      fontSize: '3rem',
-    }}
-  >
+  <div className={styles.htmlContent}>
     <h1>Hello World!</h1>
   </div>
 )

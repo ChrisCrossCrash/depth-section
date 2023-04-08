@@ -22,3 +22,12 @@
 .halfHeight {
   height: 50vh;
 }
+
+.htmlContent {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  font-size: 3rem;
+}
