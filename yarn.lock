@@ -1538,7 +1538,7 @@
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.25.24.tgz#8c7688559979f7079aacaf31aa881c3aa410b718"
   integrity sha512-XJfwUVUKDHF5ugKwIcxEgc9k8b7HbznCp6eUfWgu710hMPNIO4aw4/zB5RogDQz8nd6gyCDpU9O/m6qYEWY6yQ==
 
-"@storybook/addon-actions@7.0.2", "@storybook/addon-actions@^7.0.2":
+"@storybook/addon-actions@7.0.2":
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-7.0.2.tgz#720d764ec77e395a92be50f0cd0a1baa75a58518"
   integrity sha512-rcj39u9MrmzsrDWYt1zsoVxrogZ1Amrv9xkEofEY/QKUr2R3xpHhTALveY9BKIlG1GoE8zLlLoP2k4nz3sNNwQ==
@@ -1593,7 +1593,7 @@
     lodash "^4.17.21"
     ts-dedent "^2.0.0"
 
-"@storybook/addon-docs@7.0.2", "@storybook/addon-docs@^7.0.2":
+"@storybook/addon-docs@7.0.2":
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/@storybook/addon-docs/-/addon-docs-7.0.2.tgz#b28bf89f81d6069c2a23f07c510a591067304386"
   integrity sha512-q3rDWoZEym6Lkmhqc/HBNfLDAmTY8l0WINGUZo/nF98eP5iu4B7Nk7V6BRGYGQt6Y6ZyIQ8WKH0e/eJww2zIog==
@@ -1648,22 +1648,6 @@
     "@storybook/core-events" "7.0.2"
     "@storybook/global" "^5.0.0"
     "@storybook/preview-api" "7.0.2"
-
-"@storybook/addon-links@^7.0.2":
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-7.0.2.tgz#149e3af921ecb7e4db63bdd9aabcf0e2167bdfab"
-  integrity sha512-lPtfy2MqrcI9YjupBM2eRKGPdFKVPCz7WgO/JQQakGugORJTEGCyJrNJNtWY9jDenv8ynLZ40OxtPBZi54Sr6Q==
-  dependencies:
-    "@storybook/client-logger" "7.0.2"
-    "@storybook/core-events" "7.0.2"
-    "@storybook/csf" "^0.1.0"
-    "@storybook/global" "^5.0.0"
-    "@storybook/manager-api" "7.0.2"
-    "@storybook/preview-api" "7.0.2"
-    "@storybook/router" "7.0.2"
-    "@storybook/types" "7.0.2"
-    prop-types "^15.7.2"
-    ts-dedent "^2.0.0"
 
 "@storybook/addon-measure@7.0.2":
   version "7.0.2"
