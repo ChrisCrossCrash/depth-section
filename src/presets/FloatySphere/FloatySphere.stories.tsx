@@ -5,39 +5,42 @@ import { Setup, HtmlContent } from '../../core/Setup/Setup'
 const meta = {
   title: 'FloatySphere',
   component: FloatySphere,
+  argTypes: {
+    debug: { control: 'boolean' },
+  },
 } satisfies Meta<typeof FloatySphere>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  render: () => (
+  render: (args) => (
     <Setup>
-      <FloatySphere />
+      <FloatySphere {...args} />
     </Setup>
   ),
 }
 
 export const WithHtml: Story = {
-  render: () => (
+  render: (args) => (
     <Setup>
-      <FloatySphere>{HtmlContent}</FloatySphere>
+      <FloatySphere {...args}>{HtmlContent}</FloatySphere>
     </Setup>
   ),
 }
 
 export const HalfWidth: Story = {
-  render: () => (
+  render: (args) => (
     <Setup halfWidth>
-      <FloatySphere />
+      <FloatySphere {...args} />
     </Setup>
   ),
 }
 
 export const HalfHeight: Story = {
-  render: () => (
+  render: (args) => (
     <Setup halfHeight>
-      <FloatySphere />
+      <FloatySphere {...args} />
     </Setup>
   ),
 }
