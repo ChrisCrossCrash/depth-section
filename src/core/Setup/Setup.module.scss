@@ -1,9 +1,22 @@
-.base {
-  height: 300vh;
+.scrollContainerOuter {
+  // 80vh outer container with 240vh inner scrollable height
+  height: 60vh;
+  width: 720px;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: auto;
+  position: relative;
+  outline: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.scrollContainerInner {
+  height: 240vh;
+  background-color: #f7f7f7;
 }
 
 .filler {
-  height: 80vh;
+  height: 60vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,6 +25,7 @@
 .depthSectionContainer {
   height: 100vh;
   display: flex;
+  outline: 1px solid #ccc;
 }
 
 .halfWidth {
@@ -20,7 +34,7 @@
 }
 
 .halfHeight {
-  height: 50vh;
+  height: 30vh;
 }
 
 .htmlContent {
