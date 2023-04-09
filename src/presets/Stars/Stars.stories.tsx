@@ -1,34 +1,43 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import { Stars } from './Stars'
 import { Setup, HtmlContent } from '../../core/Setup/Setup'
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-export default {
+const meta = {
   title: 'Stars',
   component: Stars,
-} as ComponentMeta<typeof Stars>
+} satisfies Meta<typeof Stars>
 
-export const Default: ComponentStory<typeof Stars> = (args) => (
-  <Setup>
-    <Stars {...args} />
-  </Setup>
-)
+export default meta
+type Story = StoryObj<typeof meta>
 
-export const WithHtml: ComponentStory<typeof Stars> = (args) => (
-  <Setup>
-    <Stars {...args} />
-  </Setup>
-)
-WithHtml.args = { children: HtmlContent }
+export const Default: Story = {
+  render: () => (
+    <Setup>
+      <Stars />
+    </Setup>
+  ),
+}
 
-export const HalfWidth: ComponentStory<typeof Stars> = (args) => (
-  <Setup halfWidth>
-    <Stars {...args} />
-  </Setup>
-)
+export const WithHtml: Story = {
+  render: () => (
+    <Setup>
+      <Stars>{HtmlContent}</Stars>
+    </Setup>
+  ),
+}
 
-export const HalfHeight: ComponentStory<typeof Stars> = (args) => (
-  <Setup halfHeight>
-    <Stars {...args} />
-  </Setup>
-)
+export const HalfWidth: Story = {
+  render: () => (
+    <Setup halfWidth>
+      <Stars />
+    </Setup>
+  ),
+}
+
+export const HalfHeight: Story = {
+  render: () => (
+    <Setup halfHeight>
+      <Stars />
+    </Setup>
+  ),
+}

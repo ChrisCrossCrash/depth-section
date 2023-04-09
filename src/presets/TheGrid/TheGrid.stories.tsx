@@ -1,34 +1,43 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import { TheGrid } from './TheGrid'
 import { Setup, HtmlContent } from '../../core/Setup/Setup'
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-export default {
+const meta = {
   title: 'TheGrid',
   component: TheGrid,
-} as ComponentMeta<typeof TheGrid>
+} satisfies Meta<typeof TheGrid>
 
-export const Default: ComponentStory<typeof TheGrid> = (args) => (
-  <Setup>
-    <TheGrid {...args} />
-  </Setup>
-)
+export default meta
+type Story = StoryObj<typeof meta>
 
-export const WithHtml: ComponentStory<typeof TheGrid> = (args) => (
-  <Setup>
-    <TheGrid {...args} />
-  </Setup>
-)
-WithHtml.args = { children: HtmlContent }
+export const Default: Story = {
+  render: () => (
+    <Setup>
+      <TheGrid />
+    </Setup>
+  ),
+}
 
-export const HalfWidth: ComponentStory<typeof TheGrid> = (args) => (
-  <Setup halfWidth>
-    <TheGrid {...args} />
-  </Setup>
-)
+export const WithHtml: Story = {
+  render: () => (
+    <Setup>
+      <TheGrid>{HtmlContent}</TheGrid>
+    </Setup>
+  ),
+}
 
-export const HalfHeight: ComponentStory<typeof TheGrid> = (args) => (
-  <Setup halfHeight>
-    <TheGrid {...args} />
-  </Setup>
-)
+export const HalfWidth: Story = {
+  render: () => (
+    <Setup halfWidth>
+      <TheGrid />
+    </Setup>
+  ),
+}
+
+export const HalfHeight: Story = {
+  render: () => (
+    <Setup halfHeight>
+      <TheGrid />
+    </Setup>
+  ),
+}

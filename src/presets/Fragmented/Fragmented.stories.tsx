@@ -1,34 +1,43 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import { Fragmented } from './Fragmented'
 import { Setup, HtmlContent } from '../../core/Setup/Setup'
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-export default {
+const meta = {
   title: 'Fragmented',
   component: Fragmented,
-} as ComponentMeta<typeof Fragmented>
+} satisfies Meta<typeof Fragmented>
 
-export const Default: ComponentStory<typeof Fragmented> = (args) => (
-  <Setup>
-    <Fragmented {...args} />
-  </Setup>
-)
+export default meta
+type Story = StoryObj<typeof meta>
 
-export const WithHtml: ComponentStory<typeof Fragmented> = (args) => (
-  <Setup>
-    <Fragmented {...args} />
-  </Setup>
-)
-WithHtml.args = { children: HtmlContent }
+export const Default: Story = {
+  render: () => (
+    <Setup>
+      <Fragmented />
+    </Setup>
+  ),
+}
 
-export const HalfWidth: ComponentStory<typeof Fragmented> = (args) => (
-  <Setup halfWidth>
-    <Fragmented {...args} />
-  </Setup>
-)
+export const WithHtml: Story = {
+  render: () => (
+    <Setup>
+      <Fragmented>{HtmlContent}</Fragmented>
+    </Setup>
+  ),
+}
 
-export const HalfHeight: ComponentStory<typeof Fragmented> = (args) => (
-  <Setup halfHeight>
-    <Fragmented {...args} />
-  </Setup>
-)
+export const HalfWidth: Story = {
+  render: () => (
+    <Setup halfWidth>
+      <Fragmented />
+    </Setup>
+  ),
+}
+
+export const HalfHeight: Story = {
+  render: () => (
+    <Setup halfHeight>
+      <Fragmented />
+    </Setup>
+  ),
+}
