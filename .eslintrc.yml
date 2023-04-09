@@ -18,10 +18,12 @@ plugins:
   - react
   - '@typescript-eslint'
 rules:
-  {
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-non-null-assertion': 'off',
-  }
+  '@typescript-eslint/no-explicit-any': 'off',
+  '@typescript-eslint/no-non-null-assertion': 'off',
+  # Without this, things like <meshStandardMaterial roughness={0.3} /> would
+  # trigger a false positive. Check if it's fixed with React 19.
+  # https://github.com/jsx-eslint/eslint-plugin-react/issues/3423
+  'react/no-unknown-property': 'off',
 ignorePatterns:
   - '**/node_modules/**'
   - '**/dist/**'
