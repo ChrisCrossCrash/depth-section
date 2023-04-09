@@ -41,7 +41,7 @@
     "@types/node": "^18.15.8",
     "@types/react": "^18.0.8",
     "@types/react-dom": "^18.0.3",
-    "@types/three": ">=0.138.0",
+    "@types/three": "^0.150.0",
     "@typescript-eslint/eslint-plugin": "^5.10.2",
     "@typescript-eslint/parser": "^5.10.2",
     "babel-loader": "^9.1.2",
@@ -59,7 +59,7 @@
     "sass-loader": "^13.2.2",
     "storybook": "^7.0.2",
     "style-loader": "^3.3.2",
-    "three": ">=0.138.0",
+    "three": "^0.150.0",
     "tslib": "^2.5.0",
     "typescript": "^5.0.4"
   }
