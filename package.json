@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "format": "prettier --write .",
-    "build": "rm -r dist; tsc && rollup -c",
+    "build": "rm -r dist; tsc -p tsconfig.build.json && rollup -c",
     "storybook": "storybook dev -p 3000",
     "build-storybook": "storybook build"
   },

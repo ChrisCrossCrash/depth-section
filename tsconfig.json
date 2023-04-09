@@ -32,7 +32,6 @@
     "src"
   ],
   "exclude": [
-    "src/**/*.test.tsx",
-    "src/**/*.stories.tsx"
+    "src/**/*.test.tsx"
   ]
 }

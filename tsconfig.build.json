@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  // We want to include the Storybook stories for linting purposes, but we don't
+  // want to include them in the build output. That's why this file exists.
+  "exclude": [
+    "src/**/*.test.tsx",
+    "src/**/*.stories.tsx"
+  ]
+}
