@@ -30,3 +30,6 @@ yarn-error.log*
 
 # Draco Decoder (for decompressing Draco-compressed .glb files)
 /public/draco_decoder.js
+
+# PNPM
+pnpm-lock.yaml
