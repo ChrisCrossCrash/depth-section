@@ -21,7 +21,7 @@ const GalaxyInner = () => {
   const geometry = new THREE.BufferGeometry()
   geometry.setAttribute(
     'position',
-    new THREE.Float32BufferAttribute(vertices, 3)
+    new THREE.Float32BufferAttribute(vertices, 3),
   )
   const material = new THREE.PointsMaterial({ size: 0.015 })
   const points = new THREE.Points(geometry, material)

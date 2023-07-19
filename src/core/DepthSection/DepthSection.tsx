@@ -67,7 +67,7 @@ const DepthSectionInner = (props: DepthSectionInnerProps) => {
       // 0 after just scrolling past the canvas.
       fullVh + top,
       size.width,
-      size.height
+      size.height,
     )
 
     threeState.invalidate()
